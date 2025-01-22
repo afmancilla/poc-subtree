@@ -1,0 +1,21 @@
+{
+  "title": "Persona",
+  "type": "object",
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "apellido": {
+      "type": "string"
+    },
+    "dni": {
+      "type": "string",
+      "pattern": "^[0-9]{8}$"
+    },
+    "direccion": {
+      "type": "string"
+    },
+  },
+  "required": ["nombre", "apellido", "dni"]
+}
+
