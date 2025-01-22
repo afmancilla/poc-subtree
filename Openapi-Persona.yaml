@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: API Personas
+  description: API que utiliza un esquema de Persona referenciado externamente.
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://api.miempresa.com/v1
+    description: Servidor de producción
+paths:
+  /personas:
+    post:
+      summary: Crear una nueva persona
+      description: Endpoint para crear personas
+      operationId: crearPersona
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './submodule-openapi/persona.schema.json'
+      responses:
+        '201':
+          description: Persona creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: './submodule-openapi/persona.schema.json'
+        '400':
+          description: Solicitud inválida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Solicitud no válida."
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+security:
+  - ApiKeyAuth: []

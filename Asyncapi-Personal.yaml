@@ -1,0 +1,36 @@
+asyncapi: 2.6.0
+info:
+  title: API Personas
+  description: API que utiliza un esquema de Persona referenciado externamente.
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  production:
+    url: wss://api.miempresa.com/ws
+    protocol: wss
+    description: Servidor WebSocket de producción
+channels:
+  persona/creada:
+    description: Canal para notificar la creación de personas
+    subscribe:
+      operationId: notificarPersonaCreada
+      summary: Notificación de creación de persona
+      message:
+        contentType: application/json
+        payload:
+          $ref: './submodule-openapi/persona.schema.json'
+  persona/error:
+    description: Canal para notificar errores
+    subscribe:
+      operationId: notificarError
+      summary: Notificación de error
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            message:
+              type: string
+              example: "Hubo un error en la creación de la persona."
