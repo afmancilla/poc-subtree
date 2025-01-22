@@ -11,7 +11,10 @@
     "dni": {
       "type": "string",
       "pattern": "^[0-9]{8}$"
-    }
+    },
+    "direccion": {
+      "type": "string"
+    },
   },
   "required": ["nombre", "apellido", "dni"]
 }
